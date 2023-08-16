@@ -1,0 +1,10 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.title {
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+}

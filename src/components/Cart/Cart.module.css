@@ -1,0 +1,49 @@
+.container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: space-between;
+
+  width: 100vw;
+  padding: 16px;
+
+  line-height: 1.5rem;
+
+  background-color: #232526;
+}
+
+.title {
+  font-size: 1.125rem;
+}
+
+.button {
+  cursor: pointer;
+
+  width: 118px;
+  height: 48px;
+
+  font-weight: 700;
+
+  background-color: var(--orange-base);
+  border-radius: 40px;
+}
+
+.button:hover {
+  background-color: var(--orange-base-hover);
+}
+
+@media (min-width: 576px) { /* Landscape phones */
+  .container {
+    position: sticky;
+    top: 76px;
+
+    flex-direction: column;
+    gap: 32px;
+
+    width: 150px;
+
+    border-radius: 24px;
+  }
+}

@@ -1,0 +1,66 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+}
+
+.asteroids {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 280px;
+}
+
+.header > span {
+  display: inline-block;
+  line-height: 1.5rem;
+}
+
+.header > span::after { /* Псевдоэлемент с жирным шрифтом чтобы избежать layout shift во время переключения типа дистанции */
+  content: attr(data-text);
+  user-select: none;
+
+  overflow: hidden;
+  display: block;
+
+  height: 0;
+
+  font-weight: 700;
+
+  visibility: hidden;
+
+  @media speech {
+    display: none;
+  }
+}
+
+.title {
+  margin-bottom: 8px;
+  padding-right: 20px;
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+}
+
+.selected_distance_type {
+  font-weight: 700;
+}
+
+.unselected_distance_type {
+  cursor: pointer;
+  text-decoration-line: underline;
+}
+
+.divider {
+  margin: 0 6px;
+}
+
+@media (min-width: 576px) { /* Landscape phones */
+  .asteroids {
+    width: 49vw;
+  }
+}
+
+@media (min-width: 768px) { /* Tablets */
+  .asteroids {
+    width: 400px;
+  }
+}

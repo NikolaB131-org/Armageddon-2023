@@ -1,0 +1,71 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.logo {
+  margin-bottom: 17px;
+}
+
+.main {
+  margin-left: 19.2vw;
+}
+
+.footer {
+  margin-top: auto;
+  padding: 16px;
+  line-height: 1.5rem;
+}
+
+.background_image {
+  position: fixed;
+  z-index: -1;
+  top: 50%;
+  left: -329px;
+  transform: translateY(-50%);
+
+  width: 377px;
+  height: auto;
+}
+
+@media (min-width: 576px) { /* Landscape phones */
+  .background_image {
+    left: -280px;
+  }
+}
+
+@media (min-width: 768px) { /* Tablets */
+  .main {
+    margin-left: 25vw;
+  }
+
+  .background_image {
+    left: -210px;
+  }
+}
+
+@media (min-width: 992px) { /* Desktops */
+  .main {
+    margin-left: 362px;
+  }
+
+  .logo {
+    margin-bottom: 9px;
+  }
+
+  .background_image {
+    left: -73px;
+  }
+}
+
+@media (min-width: 1200px) { /* Large desktop */
+  .main {
+    margin-left: 39vw;
+  }
+
+  .background_image {
+    left: -136px;
+    width: 536px;
+  }
+}

@@ -1,0 +1,94 @@
+.container {
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  width: fit-content;
+}
+
+.container:hover {
+  border-radius: 8px;
+  outline: 2px dashed var(--orange-base);
+  outline-offset: 5px;
+}
+
+.date {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.info {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.distance {
+  margin-bottom: 8px;
+  line-height: 1.5rem;
+}
+
+.distance_line_container {
+  display: flex;
+  align-items: center;
+}
+
+.distance_line_container > img {
+  width: auto;
+  height: 7px;
+}
+
+.distance_line {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.5);;
+}
+
+.asteroidImg_big {
+  width: auto;
+  height: 40px;
+}
+
+.asteroidImg {
+  width: auto;
+  height: 24px;
+}
+
+.name {
+  font-weight: 700;
+  line-height: 1.5rem;
+  text-decoration-line: underline;
+}
+
+.diameter {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.footer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.footer_button {
+  cursor: pointer;
+
+  width: 90px;
+  height: 24px;
+
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--orange-base);
+  letter-spacing: 1px;
+
+  background-color: var(--orange-smooth);
+  border-radius: 16px;
+}
+
+.footer_button:hover {
+  color: inherit; /* reset color */
+  background-color: var(--orange-base);
+}
