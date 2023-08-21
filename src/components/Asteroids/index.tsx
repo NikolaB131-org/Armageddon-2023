@@ -1,7 +1,7 @@
 'use client';
 
 import { AsteroidData } from '@/types';
-import { useContext, useState, useRef, useCallback } from 'react';
+import { useContext, useState, useRef, useCallback, useMemo } from 'react';
 import { AsteroidsContext } from '@/app/AsteroidsContextProvider';
 import { getIsoDate } from '@/utils/getIsoDate';
 import Asteroid from '../Asteroid';
@@ -61,7 +61,9 @@ function Asteroids({ initialAsteroids, isRenderedInCart }: Props) {
     }
   }, [isLoading, nextFetchDate]);
 
-  const orderedAsteroidsIds = orderedAsteroids.map(asteroid => asteroid.id);
+  const orderedAsteroidsIds = useMemo(() => {
+    return orderedAsteroids.map(asteroid => asteroid.id);
+  }, [orderedAsteroids]);
 
   return (
     <div className={styles.container}>
