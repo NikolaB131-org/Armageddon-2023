@@ -6,61 +6,29 @@
 .asteroids {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: var(--asteroids-gap);
+
   width: 280px;
-}
-
-.header > span {
-  display: inline-block;
-  line-height: 1.5rem;
-}
-
-.header > span::after { /* Псевдоэлемент с жирным шрифтом чтобы избежать layout shift во время переключения типа дистанции */
-  content: attr(data-text);
-  user-select: none;
-
-  overflow: hidden;
-  display: block;
-
-  height: 0;
-
-  font-weight: 700;
-
-  visibility: hidden;
-
-  @media speech {
-    display: none;
-  }
+  margin-right: 10px;
+  margin-bottom: calc(var(--cart-height-mobile) + var(--asteroids-gap));
 }
 
 .title {
   margin-bottom: 8px;
-  padding-right: 20px;
   font-size: 1.75rem;
   line-height: 2.25rem;
-}
-
-.selected_distance_type {
-  font-weight: 700;
-}
-
-.unselected_distance_type {
-  cursor: pointer;
-  text-decoration-line: underline;
-}
-
-.divider {
-  margin: 0 6px;
 }
 
 @media (min-width: 576px) { /* Landscape phones */
   .asteroids {
     width: 49vw;
+    margin-bottom: 0;
   }
 }
 
 @media (min-width: 768px) { /* Tablets */
   .asteroids {
     width: 400px;
+    margin-right: 0;
   }
 }

@@ -1,5 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import AsteroidsContextProvider from './AsteroidsContextProvider';
 import Logo from '@/components/Logo';
 import Image from 'next/image'
 import earthJpg from '../../public/earth.jpg';
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   description: 'Онлайн-сервис по мониторингу и уничтожению опасных астероидов на основе данных API NASA',
 }
 
-export default function RootLayout({
+function RootLayout({
   children,
 }: {
   children: React.ReactNode
@@ -22,7 +23,9 @@ export default function RootLayout({
           <Logo className={styles.logo}/>
         </header>
         <main className={styles.main}>
-          {children}
+          <AsteroidsContextProvider>
+            {children}
+          </AsteroidsContextProvider>
         </main>
         <footer className={styles.footer}>
           <p>© Все права и планета защищены</p>
@@ -39,3 +42,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+export default RootLayout;

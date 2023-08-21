@@ -1,3 +1,9 @@
+'use client';
+
+import { AsteroidData } from '@/types';
+import { DistanceUnitType } from '../DistanceUnitSwitcher';
+import { forwardRef, memo, useContext } from 'react';
+import { AsteroidsContext } from '@/app/AsteroidsContextProvider';
 import { inclineFromNumber } from '@/utils/inclineFromNumber';
 import Image from 'next/image';
 import arrowLeftSvg from '../../../public/arrow-left.svg';
@@ -5,49 +11,58 @@ import arrowRightSvg from '../../../public/arrow-right.svg';
 import asteroidPng from '../../../public/asteroid.png';
 import styles from './Asteroid.module.css';
 
-export type DistanceType = 'kilometers' | 'lunar';
-
 type Props = {
-  timestamp: number;
-  name: string;
-  diameter: number;
-  selectedDistanceType: DistanceType;
-  distanceKilometers: string;
-  distanceLunar: string;
-  inCart?: boolean;
-  hazardous?: boolean;
-  orderButtonHidden?: boolean;
+  data: AsteroidData;
+  distanceUnit: DistanceUnitType;
+  isOrdered: boolean;
+  isOrderButtonHidden?: boolean;
 };
 
-export default function Asteroid({
-  timestamp,
-  name,
-  diameter,
-  selectedDistanceType,
-  distanceKilometers,
-  distanceLunar,
-  inCart,
-  hazardous,
-  orderButtonHidden,
-}: Props) {
-  const months = ['янв', 'февр', 'марта', 'апр', 'мая', 'июня', 'июля', 'авг', 'сент', 'окт', 'нояб', 'дек'];
-  const date = new Date(timestamp);
+const Asteroid = forwardRef<HTMLDivElement, Props>(function Asteroid(
+  { data, distanceUnit, isOrdered, isOrderButtonHidden }, ref
+) {
+  const { setOrderedAsteroids } = useContext(AsteroidsContext);
+  const { id, date, name, diameter, distanceKilometers, distanceLunar, isHazardous } = data;
 
-  const day = date.getDate();
-  const month = months[date.getMonth()];
-  const year = date.getFullYear();
+  const months = ['янв', 'февр', 'марта', 'апр', 'мая', 'июня', 'июля', 'авг', 'сент', 'окт', 'нояб', 'дек'];
+  const dateSplitted = date.split('-');
+  const day = +dateSplitted[2];
+  const month = months[+dateSplitted[1] - 1];
+  const year = dateSplitted[0];
 
   let distance = '';
-  if (selectedDistanceType === 'kilometers') {
-    distance = new Intl.NumberFormat('ru-RU').format(+distanceKilometers) + ' км';
-  } else if (selectedDistanceType === 'lunar') {
-    const lunarEnding = inclineFromNumber(+distanceLunar, 'ая', 'ыe', 'ых');
-    const orbitEnding = inclineFromNumber(+distanceLunar, 'а', 'ы', '');
-    distance = `${distanceLunar} лунн${lunarEnding} орбит${orbitEnding}`;
+  switch (distanceUnit) {
+    case 'kilometers':
+      distance = new Intl.NumberFormat('ru-RU').format(+distanceKilometers) + ' км';
+      break;
+    case 'lunar':
+      const lunarEnding = inclineFromNumber(+distanceLunar, 'ая', 'ыe', 'ых');
+      const orbitEnding = inclineFromNumber(+distanceLunar, 'а', 'ы', '');
+      distance = `${distanceLunar} лунн${lunarEnding} орбит${orbitEnding}`;
+      break;
   }
 
+  const onAddToCartClick = () => {
+    setOrderedAsteroids(prev => [...prev, data])
+  };
+
+  const onDeleteFromCartClick = () => {
+    setOrderedAsteroids(prev => prev.filter(asteroid => asteroid.id !== id))
+  };
+
+  const getOrderButton = () => {
+    if (isOrdered) {
+      return (
+        <button className={`${styles.footer_button} ${styles.footer_button_ordered}`} onClick={onDeleteFromCartClick}>
+          В КОРЗИНЕ
+        </button>
+      );
+    }
+    return <button className={styles.footer_button} onClick={onAddToCartClick}>ЗАКАЗАТЬ</button>;
+  };
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} ref={ref}>
       <h2 className={styles.date}>{`${day} ${month} ${year}`}</h2>
 
       <div className={styles.info}>
@@ -70,12 +85,15 @@ export default function Asteroid({
         </div>
       </div>
 
-      {(!orderButtonHidden || hazardous) && (
+      {(!isOrderButtonHidden || isHazardous) && (
         <div className={styles.footer}>
-          {!orderButtonHidden && <button className={styles.footer_button}>ЗАКАЗАТЬ</button>}
-          {hazardous && <span>⚠️ Опасен</span>}
+          {!isOrderButtonHidden && getOrderButton()}
+          {isHazardous && <span>⚠️ Опасен</span>}
         </div>
       )}
     </div>
   );
-}
+});
+
+// Мемоизация нужна чтобы при добавлении спинера в компонент Asteroids все астероиды не ререндерились
+export default memo(Asteroid);

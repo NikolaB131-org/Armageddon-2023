@@ -6,12 +6,16 @@
   gap: 8px;
 
   width: fit-content;
+
+  border-radius: 8px;
+  outline: 2px dashed rgba(0, 0, 0, 0);
+  outline-offset: 5px;
+
+  transition: outline-color 0.25s linear;
 }
 
 .container:hover {
-  border-radius: 8px;
-  outline: 2px dashed var(--orange-base);
-  outline-offset: 5px;
+  outline-color: var(--orange-base);
 }
 
 .date {
@@ -91,4 +95,8 @@
 .footer_button:hover {
   color: inherit; /* reset color */
   background-color: var(--orange-base);
+}
+
+.footer_button_ordered {
+  color: inherit; /* reset color */
 }

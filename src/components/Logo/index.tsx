@@ -11,7 +11,7 @@ type Props = {
   className?: string;
 };
 
-export default function Logo({ className = '' }: Props) {
+function Logo({ className = '' }: Props) {
   return (
     <header className={`${styles.header} ${className}`}>
       <h2 className={`${styles.title} ${passionOne.className}`}>ARMAGEDDON 2023</h2>
@@ -19,3 +19,5 @@ export default function Logo({ className = '' }: Props) {
     </header>
   );
 }
+
+export default Logo;

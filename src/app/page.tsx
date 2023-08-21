@@ -1,40 +1,25 @@
-'use client';
-
-import { useState } from 'react';
-import Asteroid, { DistanceType } from '@/components/Asteroid';
+import { fetchAsteroids } from '@/app/api/asteroids/fetchAsteroids';
+import { getIsoDate } from '@/utils/getIsoDate';
+import DistanceUnitSwitcher from '@/components/DistanceUnitSwitcher';
+import Asteroids from '@/components/Asteroids';
 import Cart from '@/components/Cart';
 import styles from './page.module.css';
 
-export default function Home() {
-  const [selectedDistanceType, setDistanceFilterType] = useState<DistanceType>('kilometers');
-
-  const getSelectedSpanClassName = (type: DistanceType): string => {
-    return selectedDistanceType === type ? styles.selected_distance_type : styles.unselected_distance_type;
-  }
-  const kilometersText = 'в километрах';
-  const lunarText = 'в лунных орбитах';
+async function Home() {
+  const initialAsteroids = await fetchAsteroids(getIsoDate(new Date()));
 
   return (
     <div className={styles.container}>
       <div className={styles.asteroids}>
-        <header className={styles.header}>
+        <header>
           <h1 className={styles.title}>Ближайшие подлёты астероидов</h1>
-          <span
-            className={getSelectedSpanClassName('kilometers')}
-            onClick={() => setDistanceFilterType('kilometers')}
-            data-text={kilometersText}
-          >{kilometersText}</span>
-          <span className={styles.divider}>|</span>
-          <span
-            className={getSelectedSpanClassName('lunar')}
-            onClick={() => setDistanceFilterType('lunar')}
-            data-text={lunarText}
-          >{lunarText}</span>
+          <DistanceUnitSwitcher />
         </header>
-        <Asteroid timestamp={new Date().getTime()} selectedDistanceType={selectedDistanceType} distanceKilometers='1762598' distanceLunar='5' name='2021 FQ' diameter={235} hazardous />
-        <Asteroid timestamp={new Date().getTime()} selectedDistanceType={selectedDistanceType} distanceKilometers='227313' distanceLunar='3' name='2021 FQ' diameter={124} />
+        <Asteroids initialAsteroids={initialAsteroids} />
       </div>
-      <Cart asteroidsNumber={3} />
+      <Cart />
     </div>
   );
 }
+
+export default Home;

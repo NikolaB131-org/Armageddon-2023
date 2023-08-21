@@ -2,6 +2,9 @@
   --orange-base: #F86600;
   --orange-base-hover: #C25100;
   --orange-smooth: #F8660026;
+
+  --asteroids-gap: 24px;
+  --cart-height-mobile: 80px;
 }
 
 * {

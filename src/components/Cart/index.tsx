@@ -1,12 +1,15 @@
+'use client';
+
+import { useContext } from 'react';
+import { AsteroidsContext } from '@/app/AsteroidsContextProvider';
 import { inclineFromNumber } from '@/utils/inclineFromNumber';
 import Link from 'next/link';
 import styles from './Cart.module.css';
 
-type Props = {
-  asteroidsNumber: number;
-};
+function Cart() {
+  const { orderedAsteroids } = useContext(AsteroidsContext);
 
-export default function Cart({ asteroidsNumber }: Props) {
+  const asteroidsNumber = orderedAsteroids.length;
   const asteroidsEnding = inclineFromNumber(asteroidsNumber, '', 'а', 'ов');
 
   return (
@@ -21,3 +24,5 @@ export default function Cart({ asteroidsNumber }: Props) {
     </div>
   );
 }
+
+export default Cart;

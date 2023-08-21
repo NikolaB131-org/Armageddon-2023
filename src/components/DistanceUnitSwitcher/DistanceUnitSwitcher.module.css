@@ -1,0 +1,36 @@
+.container > span {
+  display: inline-block;
+  line-height: 1.5rem;
+}
+
+ /* Псевдоэлемент с жирным шрифтом чтобы избежать layout shift во время переключения типа дистанции */
+.container > span::after {
+  content: attr(data-text);
+  user-select: none;
+
+  overflow: hidden;
+  display: block;
+
+  height: 0;
+
+  font-weight: 700;
+
+  visibility: hidden;
+
+  @media speech {
+    display: none;
+  }
+}
+
+.selected_unit {
+  font-weight: 700;
+}
+
+.unselected_unit {
+  cursor: pointer;
+  text-decoration-line: underline;
+}
+
+.divider {
+  margin: 0 6px;
+}
