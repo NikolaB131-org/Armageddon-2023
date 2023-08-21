@@ -6,6 +6,7 @@ import { AsteroidsContext } from '@/app/AsteroidsContextProvider';
 import { getIsoDate } from '@/utils/getIsoDate';
 import Asteroid from '../Asteroid';
 import Spinner from '../Spinner';
+import styles from './Asteroids.module.css';
 
 const addOneDay = (date: Date) => {
   const newDate = new Date(date);
@@ -15,12 +16,19 @@ const addOneDay = (date: Date) => {
 
 type Props = {
   initialAsteroids?: AsteroidData[];
+  isRenderedInCart?: boolean;
 };
 
-function Asteroids({ initialAsteroids }: Props) {
+function Asteroids({ initialAsteroids, isRenderedInCart }: Props) {
   const { distanceUnit, orderedAsteroids } = useContext(AsteroidsContext);
-  const [asteroids, setAsteroids] = useState<AsteroidData[]>(initialAsteroids ?? []);
 
+  const getInitialAsteroids = (): AsteroidData[] => {
+    if (isRenderedInCart) return orderedAsteroids;
+    if (initialAsteroids) return initialAsteroids;
+    return [];
+  };
+
+  const [asteroids, setAsteroids] = useState<AsteroidData[]>(getInitialAsteroids);
   const [isLoading, setIsLoading] = useState(false);
   const [nextFetchDate, setNextFetchDate] = useState<Date>(() => addOneDay(new Date()));
   const intersectionObserver = useRef<IntersectionObserver>(); // useRef для того чтобы сохранять информацию при ререндерах
@@ -56,20 +64,20 @@ function Asteroids({ initialAsteroids }: Props) {
   const orderedAsteroidsIds = orderedAsteroids.map(asteroid => asteroid.id);
 
   return (
-    <>
+    <div className={styles.container}>
       {asteroids.map((asteroid, i) => (
         <Asteroid
-          ref={asteroids.length === i + 1 // вешаем на последний элемент ссылку для intersectionObserver
-            ? lastAsteroidRef
-            : undefined}
+          // Если рендеринг не на странице корзины и элемент последний, то вешаем ссылку
+          ref={!isRenderedInCart && asteroids.length === i + 1 ? lastAsteroidRef : undefined}
           key={asteroid.id}
+          data={asteroid}
           distanceUnit={distanceUnit}
           isOrdered={orderedAsteroidsIds.includes(asteroid.id)} // если астероид в корзине, рисуем другую кнопку
-          data={asteroid}
+          isOrderButtonHidden={isRenderedInCart}
         />
       ))}
       {isLoading && <Spinner />}
-    </>
+    </div>
   );
 }
 

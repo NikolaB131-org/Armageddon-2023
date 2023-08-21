@@ -9,7 +9,7 @@ import styles from './layout.module.css';
 export const metadata: Metadata = {
   title: 'Armageddon 2023',
   description: 'Онлайн-сервис по мониторингу и уничтожению опасных астероидов на основе данных API NASA',
-}
+};
 
 function RootLayout({
   children,

@@ -13,8 +13,8 @@
 }
 
 .footer {
-  display: none;
-  margin-top: auto;
+  height: var(--footer-height);
+  margin-top: auto; /* для того чтобы футер был всегда внизу */
   padding: 16px;
   line-height: 1.5rem;
 }
@@ -31,10 +31,6 @@
 }
 
 @media (min-width: 576px) { /* Landscape phones */
-  .footer {
-    display: initial; /* делает футер видимым */
-  }
-
   .background_image {
     left: -280px;
   }

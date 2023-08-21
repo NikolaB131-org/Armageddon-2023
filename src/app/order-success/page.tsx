@@ -1,11 +1,13 @@
-import Asteroid from '@/components/Asteroid';
+import Asteroids from '@/components/Asteroids';
 import styles from './page.module.css';
 
-export default function Cart() {
+function Cart() {
   return (
-    <header className={styles.header}>
+    <div className={styles.container}>
       <h1 className={styles.title}>Заказ отправлен!</h1>
-      <Asteroid timestamp={new Date().getTime()} selectedDistanceType='kilometers' distanceKilometers='12625475' distanceLunar='3' name='2021 FQ' diameter={235} hazardous orderButtonHidden />
-    </header>
+      <Asteroids isRenderedInCart />
+    </div>
   );
 }
+
+export default Cart;

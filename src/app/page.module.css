@@ -4,13 +4,13 @@
 }
 
 .asteroids {
-  display: flex;
-  flex-direction: column;
-  gap: var(--asteroids-gap);
-
   width: 280px;
   margin-right: 10px;
-  margin-bottom: calc(var(--cart-height-mobile) + var(--asteroids-gap));
+  margin-bottom: calc(var(--cart-height-mobile) + var(--asteroids-gap) - var(--footer-height));
+}
+
+.header {
+  margin-bottom: var(--asteroids-gap);
 }
 
 .title {

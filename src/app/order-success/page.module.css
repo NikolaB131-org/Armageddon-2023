@@ -1,10 +1,15 @@
-.header {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+.container {
+  width: 280px;
 }
 
 .title {
+  margin-bottom: var(--asteroids-gap);
   font-size: 1.75rem;
   line-height: 2.25rem;
+}
+
+@media (min-width: 576px) { /* Landscape phones */
+  .container {
+    width: auto;
+  }
 }

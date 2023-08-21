@@ -13,10 +13,10 @@ type Props = {
 
 function Logo({ className = '' }: Props) {
   return (
-    <header className={`${styles.header} ${className}`}>
+    <div className={`${styles.container} ${className}`}>
       <h2 className={`${styles.title} ${passionOne.className}`}>ARMAGEDDON 2023</h2>
       <p className={styles.subtitle}>ООО “Команда им. Б. Уиллиса”.<br />Взрываем астероиды с 1998 года.</p>
-    </header>
+    </div>
   );
 }
 
