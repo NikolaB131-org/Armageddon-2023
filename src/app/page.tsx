@@ -1,4 +1,4 @@
-import { fetchAsteroids } from '@/app/api/asteroids/fetchAsteroids';
+import { fetchAsteroids } from '@/api/fetchAsteroids';
 import { getIsoDate } from '@/utils/getIsoDate';
 import DistanceUnitSwitcher from '@/components/DistanceUnitSwitcher';
 import Asteroids from '@/components/Asteroids';

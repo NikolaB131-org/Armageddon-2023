@@ -1,7 +1,7 @@
 import Asteroids from '@/components/Asteroids';
 import styles from './page.module.css';
 
-function Cart() {
+function Page() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Заказ отправлен!</h1>
@@ -10,4 +10,4 @@ function Cart() {
   );
 }
 
-export default Cart;
+export default Page;

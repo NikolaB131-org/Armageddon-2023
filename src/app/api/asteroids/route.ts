@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { fetchAsteroids } from '@/app/api/asteroids/fetchAsteroids';
+import { fetchAsteroids } from '@/api/fetchAsteroids';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

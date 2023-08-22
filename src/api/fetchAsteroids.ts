@@ -2,6 +2,8 @@ import 'server-only';
 import { AsteroidData } from '@/types';
 import { FeedResponse } from '@/types/apiTypes';
 
+// Вынес эту функцию сюда чтобы не использовать API ключ на клиенте
+// (так же можно было воспользоваться server-actions, но они пока что в альфе)
 export async function fetchAsteroids(date: string) {
   const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&end_date=${date}&api_key=${process.env.DATA_API_KEY}`;
   const res = await fetch(url);
