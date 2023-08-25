@@ -1,4 +1,5 @@
 import { fetchAsteroid } from '@/api/fetchAsteroid';
+import Error from '@/components/Error';
 import DynamicSelectText from '@/components/DynamicSelectText';
 import CloseApproaches from '@/components/CloseApproaches';
 import styles from './page.module.css';
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: Params) {
 
 async function Page({ params }: Params) {
   const asteroid = await fetchAsteroid(params.id);
-  if (!asteroid) throw new Error('Астероид с указанным id не найден!');
+  if (!asteroid) return <Error message='Астероид с указанным id не найден!' />;
 
   return (
     <div className={styles.container}>
