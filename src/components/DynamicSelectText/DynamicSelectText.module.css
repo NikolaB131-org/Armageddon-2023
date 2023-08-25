@@ -1,0 +1,82 @@
+.nowrap {
+  white-space: nowrap;
+}
+
+.container_dropdown {
+  --border: 2px solid #FFF;
+  --border-radius: 8px;
+  --padding: 3px 6px;
+
+  position: relative;
+  display: inline-block;
+}
+
+.button {
+  cursor: pointer;
+
+  display: flex;
+  gap: 3px;
+  align-items: center;
+
+  padding: var(--padding);
+
+  background-color: transparent;
+  border: var(--border);
+  border-radius: var(--border-radius);
+}
+
+.button:hover {
+  background-color: var(--orange-base);
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+}
+
+.menu {
+  pointer-events: none;
+
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+
+  overflow: hidden;
+
+  min-width: 100%;
+
+  opacity: 0;
+  background-color: var(--asteroid-page-background-color);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  box-shadow: 4px 4px 10px #000;
+}
+
+.button:focus + .menu {
+  pointer-events: all;
+  opacity: 1;
+  animation: appear 1.2s linear 0s 1 normal forwards;
+}
+
+@keyframes appear {
+  from {
+    max-height: 100%; /* начиная со 100% высоты родителя */
+  }
+  to {
+    max-height: 500px;
+  }
+}
+
+.menu > div {
+  cursor: pointer;
+  padding: var(--padding);
+}
+
+.menu > div:hover {
+  background-color: var(--orange-base);
+}
+
+.menu > div:last-child {
+  padding-bottom: 6px;
+}

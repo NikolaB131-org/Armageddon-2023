@@ -2,10 +2,12 @@
   --orange-base: #F86600;
   --orange-base-hover: #C25100;
   --orange-smooth: #F8660026;
+  --asteroid-page-background-color: #212121;
 
   --asteroids-gap: 24px;
   --cart-height-mobile: 80px;
   --footer-height: 56px;
+  --asteroid-info-gap: 10px
 }
 
 * {
@@ -26,5 +28,7 @@ body {
 }
 
 button {
-  transition: all 0.15s linear;
+  transition-timing-function: linear;
+  transition-duration: 0.15s;
+  transition-property: background-color, color;
 }

@@ -44,15 +44,14 @@ function Asteroids({ initialAsteroids, isRenderedInCart }: Props) {
       if (asteroids[0].isIntersecting) { // если элемент во вьюпорте
         setIsLoading(true); // начало загрузки
 
-        const res = await fetch(`/api/asteroids?date=${getIsoDate(nextFetchDate)}`);
-        res.json().then((asteroids: AsteroidData[]) => {
-          if (asteroids.length) { // если ответ не пустой
-            setAsteroids(prev => [...prev, ...asteroids]);
-            setNextFetchDate(prev => addOneDay(prev)); // прибавляем 1 день
-          }
-          setIsLoading(false); // конец загрузки
-        })
+        const res = await fetch(`/api/asteroids/${getIsoDate(nextFetchDate)}`);
+        const asteroids: AsteroidData[] = await res.json();
+        if (asteroids.length) { // если ответ не пустой
+          setAsteroids(prev => [...prev, ...asteroids]);
+          setNextFetchDate(prev => addOneDay(prev)); // прибавляем 1 день
+        }
 
+        setIsLoading(false); // конец загрузки
       }
     });
 

@@ -2,9 +2,11 @@
 
 import { AsteroidData } from '@/types';
 import { DistanceUnitType } from '../DistanceUnitSwitcher';
-import { forwardRef, memo, useContext } from 'react';
+import { forwardRef, useContext, useEffect, memo } from 'react';
+import { useRouter } from 'next/navigation';
 import { AsteroidsContext } from '@/app/AsteroidsContextProvider';
 import { inclineFromNumber } from '@/utils/inclineFromNumber';
+import { prettifyDate } from '@/utils/prettifyDate';
 import Image from 'next/image';
 import arrowLeftSvg from '../../../public/arrow-left.svg';
 import arrowRightSvg from '../../../public/arrow-right.svg';
@@ -21,14 +23,15 @@ type Props = {
 const Asteroid = forwardRef<HTMLDivElement, Props>(function Asteroid(
   { data, distanceUnit, isOrdered, isOrderButtonHidden }, ref
 ) {
+  const router = useRouter();
   const { setOrderedAsteroids } = useContext(AsteroidsContext);
-  const { id, date, name, diameter, distanceKilometers, distanceLunar, isHazardous } = data;
+  const { id, timestamp, name, diameter, distanceKilometers, distanceLunar, isHazardous } = data;
 
-  const months = ['янв', 'февр', 'марта', 'апр', 'мая', 'июня', 'июля', 'авг', 'сент', 'окт', 'нояб', 'дек'];
-  const dateSplitted = date.split('-');
-  const day = +dateSplitted[2];
-  const month = months[+dateSplitted[1] - 1];
-  const year = dateSplitted[0];
+  const asteroidUrl = `/asteroid/${id}`;
+
+  useEffect(() => {
+    router.prefetch(asteroidUrl); // префетчинг страницы с астероидом для более быстрой загрузки
+  }, [router, asteroidUrl]);
 
   let distance = '';
   switch (distanceUnit) {
@@ -42,11 +45,13 @@ const Asteroid = forwardRef<HTMLDivElement, Props>(function Asteroid(
       break;
   }
 
-  const onAddToCartClick = () => {
+  const onAddToCartClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation(); // чтобы не было перехода на страницу астероида
     setOrderedAsteroids(prev => [...prev, data])
   };
 
-  const onDeleteFromCartClick = () => {
+  const onDeleteFromCartClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation(); // чтобы не было перехода на страницу астероида
     setOrderedAsteroids(prev => prev.filter(asteroid => asteroid.id !== id))
   };
 
@@ -62,8 +67,8 @@ const Asteroid = forwardRef<HTMLDivElement, Props>(function Asteroid(
   };
 
   return (
-    <div className={styles.container} ref={ref}>
-      <h2 className={styles.date}>{`${day} ${month} ${year}`}</h2>
+    <div className={styles.container} onClick={() => router.push(asteroidUrl)} ref={ref}>
+      <h2 className={styles.date}>{prettifyDate(new Date(timestamp))}</h2>
 
       <div className={styles.info}>
         <div>

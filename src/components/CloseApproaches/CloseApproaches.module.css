@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--asteroid-info-gap);
+}
+
+.title {
+  margin-top: 8px;
+  font-size: 1.25rem;
+}
+
+.table {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+  gap: 4px;
+}
+
+.table > div {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 36px;
+
+  background-color: #1A1A1A;
+  border: 2px solid var(--orange-base);
+}
+
+.table > div:hover {
+  background-color: var(--orange-smooth);
+}
+
+.table > div.selected {
+  color: inherit; /* Сбрасывает цвет с желтого на белый если выбрана дата с текущим годом */
+  background-color: var(--orange-base);
+}
+
+.current_year {
+  color: #FFD900;
+}
+
+.approach_data_title {
+  font-size: 1.25rem;
+}
+
+.approach_data_placeholder {
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.approach_data_placeholder > span { /* emoji */
+  font-size: 1.5rem;
+}

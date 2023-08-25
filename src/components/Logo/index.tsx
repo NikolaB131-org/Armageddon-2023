@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Passion_One } from 'next/font/google';
 import styles from './Logo.module.css';
 
@@ -14,7 +15,9 @@ type Props = {
 function Logo({ className = '' }: Props) {
   return (
     <div className={`${styles.container} ${className}`}>
-      <h2 className={`${styles.title} ${passionOne.className}`}>ARMAGEDDON 2023</h2>
+      <Link className={styles.title_link} href={'/'}>
+        <h2 className={`${styles.title} ${passionOne.className}`}>ARMAGEDDON 2023</h2>
+      </Link>
       <p className={styles.subtitle}>ООО “Команда им. Б. Уиллиса”.<br />Взрываем астероиды с 1998 года.</p>
     </div>
   );

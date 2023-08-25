@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--asteroid-info-gap);
+
+  max-width: 400px;
+  margin-right: 20px;
+  margin-left: -40px;
+  padding: 12px;
+
+  background-color: var(--asteroid-page-background-color);
+  border-radius: 16px;
+  box-shadow: 0 0 10px black;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: var(--orange-base);
+}
+
+@media (min-width: 576px) { /* Landscape phones */
+  .container {
+    max-width: 500px;
+    margin-right: 40px;
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 992px) { /* Desktops */
+  .container {
+    max-width: 600px;
+    margin-left: -40px;
+  }
+}
+
+@media (min-width: 1200px) { /* Large desktop */
+  .container {
+    max-width: 850px;
+    margin-left: -200px;
+  }
+}

@@ -28,7 +28,7 @@ type CloseApproachData = {
   orbiting_body: string;
 };
 
-type Asteroid = {
+export type FeedAsteroid = {
   links: {
     self: string;
   };
@@ -51,6 +51,6 @@ export type FeedResponse = {
   };
   element_count: number;
   near_earth_objects: {
-    [date: string]: Asteroid[];
+    [date: string]: FeedAsteroid[];
   };
 };

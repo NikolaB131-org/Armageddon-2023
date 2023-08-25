@@ -2,6 +2,10 @@
   padding: 16px;
 }
 
+.title_link {
+  text-decoration: none;
+}
+
 .title {
   margin-bottom: 8px;
   font-size: 2rem;
