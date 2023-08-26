@@ -36,6 +36,7 @@ jobs:
           cp -r .next/* ${{env.path}}/.next
           cp package.json ${{env.path}}
           cp package-lock.json ${{env.path}}
+          cp -r /var/environments/armageddon.nikolab131.xyz/. ${{env.path}}
 
   deploy:
     needs: build
