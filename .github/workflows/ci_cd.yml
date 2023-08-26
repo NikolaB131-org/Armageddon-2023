@@ -24,8 +24,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build
-        run: npm run build
-      - name: Clean
+        run: |
+          cp -r /var/environments/armageddon-2023.nikolab131.xyz/* .
+          npm run build
+      - name: Clean previous files
         run : rm -rf ${{env.path}}
       - name: Copy
         run: |
@@ -41,9 +43,10 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Build
+      - name: Install dependencies
         run: |
           cd ${{env.path}}
+          nvm use
           npm ci
       - name: Restart pm2
         run: pm2 restart /var/configs/pm2_ecosystem.config.js --env production
