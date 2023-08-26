@@ -6,7 +6,7 @@ on:
       - 'main'
 
 env:
-  path: /var/www/armageddon-2023
+  path: /var/www/armageddon-2023.nikolab131.xyz
 
 jobs:
   build:
@@ -22,13 +22,15 @@ jobs:
           cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        run: |
-          mkdir -p ${{env.path}}
-          cp -r . ${{env.path}}
-          cd ${{env.path}}
-          npm ci
+        run: npm ci
       - name: Build
         run: npm run build
+      - name: Copy
+        run: |
+          mkdir -p ${{env.path}}
+          cp -r .next/* ${{env.path}}
+          cp package.json ${{env.path}}
+          cp package-lock.json ${{env.path}}
 
   deploy:
     needs: build
@@ -36,6 +38,12 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      - name: Clean
+        run : rm -rf ${{env.path}}
+      - name: Build
+        run: |
+          cd ${{env.path}}
+          npm ci
       - name: Restart pm2
         run: pm2 restart /var/configs/pm2_ecosystem.config.js --env production
       - name: Save pm2
