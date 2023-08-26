@@ -24,6 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           mkdir -p ${{env.path}}
+          cp -r . ${{env.path}}
           cd ${{env.path}}
           npm ci
       - name: Build
