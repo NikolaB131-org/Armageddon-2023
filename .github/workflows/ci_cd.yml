@@ -25,7 +25,7 @@ jobs:
         run: npm ci
       - name: Build
         run: |
-          cp -r /var/environments/armageddon.nikolab131.xyz/* .
+          cp -r /var/environments/armageddon.nikolab131.xyz/. .
           npm run build
       - name: Clean previous files
         run : rm -rf ${{env.path}}
