@@ -30,7 +30,7 @@ jobs:
       - name: Copy
         run: |
           mkdir -p ${{env.path}}
-          cp -r .next/* ${{env.path}}
+          cp -r .next/* ${{env.path}}/.next
           cp package.json ${{env.path}}
           cp package-lock.json ${{env.path}}
 
