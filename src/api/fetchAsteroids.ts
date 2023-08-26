@@ -8,7 +8,6 @@ export async function fetchAsteroids(date: string): Promise<AsteroidData[]> {
   const res = await fetch(url);
   const asteroids: AsteroidData[] = [];
 
-  console.log('SERVER LOG:', date, res);
   if (res.ok) {
     const data: FeedResponse = await res.json();
 
