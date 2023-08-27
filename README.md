@@ -22,12 +22,23 @@
 
 ## Установка приложения
 
-1. Для корректной работы необходимо получить ключ с [NASA API](https://api.nasa.gov/)
-2. Создать файл `.env.local` и указать там полученный ключ:
+1. Склонируйте репозиторий
 ```bash
-DATA_API_KEY=PASTE_KEY_HERE
+git clone https://github.com/NikolaB131-org/Armageddon-2023.git
 ```
-3. Установить зависимости
+
+2. Перейдите в папку с проектом
+```bash
+cd Armageddon-2023
+```
+
+3. Для корректной работы необходимо получить ключ с [API NASA](https://api.nasa.gov/)
+4. Создайте файл `.env.local` и укажите там полученный ключ:
+```bash
+DATA_API_KEY=PASTE_YOUR_KEY_HERE
+```
+
+5. Установите зависимости
 ```bash
 npm i
 ```
@@ -48,6 +59,8 @@ npm run dev
 npm run build
 npm start
 ```
+
+В обоих случаях проект запустится на: http://localhost:3000
 
 ## Остальные команды
 
