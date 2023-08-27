@@ -7,6 +7,7 @@ on:
 
 env:
   path: /var/www/armageddon-2023.nikolab131.xyz
+  tempPath: /var/tmp/armageddon-2023.nikolab131.xyz
 
 jobs:
   build:
@@ -30,15 +31,15 @@ jobs:
           cp -r /var/environments/armageddon.nikolab131.xyz/. .
           npm run build
       - name: Clean previous files
-        run : rm -rf ${{env.path}}
+        run : rm -rf ${{env.tempPath}}
       - name: Copy
         run: |
-          mkdir -p ${{env.path}}
-          mkdir -p ${{env.path}}/.next
-          cp -r .next/* ${{env.path}}/.next
-          cp package.json ${{env.path}}
-          cp package-lock.json ${{env.path}}
-          cp -r /var/environments/armageddon.nikolab131.xyz/. ${{env.path}}
+          mkdir -p ${{env.tempPath}}
+          mkdir -p ${{env.tempPath}}/.next
+          cp -r .next/* ${{env.tempPath}}/.next
+          cp package.json ${{env.tempPath}}
+          cp package-lock.json ${{env.tempPath}}
+          cp -r /var/environments/armageddon.nikolab131.xyz/. ${{env.tempPath}}
 
   deploy:
     needs: build
@@ -46,6 +47,12 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      - name: Clean previous files
+        run: rm -rf ${{env.path}}
+      - name: Copy
+        run: |
+          mkdir -p ${{env.path}}
+          cp -r ${{env.tempPath}}/. ${{env.path}}
       - name: Install dependencies
         run: |
           cd ${{env.path}}
