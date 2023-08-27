@@ -1,4 +1,4 @@
-export function prettifyDate(date: Date) {
+export function prettifyDate(date: Date): string {
   const months = ['янв', 'февр', 'марта', 'апр', 'мая', 'июня', 'июля', 'авг', 'сент', 'окт', 'нояб', 'дек'];
   // UTC - убирает влияние часового пояса на данные
   const day = date.getUTCDate();

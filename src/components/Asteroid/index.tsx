@@ -13,7 +13,7 @@ import arrowRightSvg from '../../../public/arrow-right.svg';
 import asteroidPng from '../../../public/asteroid.png';
 import styles from './Asteroid.module.css';
 
-type Props = {
+export type Props = {
   data: AsteroidData;
   distanceUnit: DistanceUnitType;
   isOrdered: boolean;

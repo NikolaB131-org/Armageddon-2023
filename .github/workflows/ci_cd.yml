@@ -23,6 +23,8 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+      - name: Tests
+        run: npm test
       - name: Build
         run: |
           cp -r /var/environments/armageddon.nikolab131.xyz/. .
