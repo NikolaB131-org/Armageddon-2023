@@ -1,34 +1,67 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center"><a href="https://armageddon.nikolab131.xyz/">Armageddon 2023 ☄️</a></h1>
 
-## Getting Started
+Онлайн-сервис по мониторингу и уничтожению опасных астероидов на основе данных [API NASA](https://api.nasa.gov/) (вкладка **Asteroids NeoWs**).
 
-First, run the development server:
+## Фичи
 
+- SSR
+- Адаптивная вёрстка
+- Тесты
+- CI/CD
+- Собственный хостинг
+
+## Сделано с помощью
+
+- Next.js
+- Typescript
+- CSS Modules
+- Jest
+- React Testing Library
+- ESLint
+- Stylelint
+
+## Установка приложения
+
+1. Для корректной работы необходимо получить ключ с [NASA API](https://api.nasa.gov/)
+2. Создать файл `.env.local` и указать его там:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+DATA_API_KEY=PASTE_KEY_HERE
+```
+3. Установить зависимости
+```bash
+npm i
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Запуск приложения
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+> [!WARNING]
+> Для работы приложения необходим `Node.js >= 18`\
+> Eсли у вас есть nvm, тогда для удобства можно выполнить команду `nvm use`
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Запуск в режиме разработчика
+```bash
+npm run dev
+```
 
-## Learn More
+Сборка и запуск для прода
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Остальные команды
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Запуск тестов
+```
+npm test
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Запуск линтеров
+```
+npm run lint
+```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Запуск stylelint (с флагом --fix)
+```
+npm run lint:styles
+```
