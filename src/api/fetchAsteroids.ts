@@ -5,7 +5,7 @@ import { FeedResponse } from '@/types/api/feedResponse';
 
 export async function fetchAsteroids(date: string): Promise<AsteroidData[]> {
   const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&end_date=${date}&api_key=${process.env.DATA_API_KEY}`;
-  const res = await fetch(url);
+  const res = await fetch(url, { next: { revalidate: 300 } });
   const asteroids: AsteroidData[] = [];
 
   if (res.ok) {
