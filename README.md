@@ -2,6 +2,8 @@
 
 Онлайн-сервис по мониторингу и уничтожению опасных астероидов на основе данных [API NASA](https://api.nasa.gov/) (вкладка **Asteroids NeoWs**).
 
+Макет в [Figma](https://www.figma.com/file/N9aUcWK3o189lZcwQyzU79/Armaggedon-V3?type=design&mode=design&t=43gucwIGyLaUhKVy-0).
+
 ## Фичи
 
 - SSR
