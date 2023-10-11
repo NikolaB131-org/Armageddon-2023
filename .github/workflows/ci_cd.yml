@@ -58,6 +58,6 @@ jobs:
           cd ${{env.path}}
           npm ci
       - name: Restart pm2
-        run: pm2 restart /var/configs/pm2_ecosystem.config.js --env production
+        run: pm2 -s restart /var/configs/pm2_ecosystem.config.js --env production --only "Armageddon-2023_frontend"
       - name: Save pm2
-        run: pm2 save
+        run: pm2 -s save
